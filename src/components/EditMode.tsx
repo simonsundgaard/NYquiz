@@ -135,10 +135,19 @@ const EditMode: React.FC<EditModeProps> = ({ quizData, onSave, onCancel }) => {
   );
 
   const generateRandomColor = () => {
-    const hue = Math.floor(Math.random() * 360);
-    const saturation = 70 + Math.floor(Math.random() * 20);
-    const lightness = 45 + Math.floor(Math.random() * 10);
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    const colors = [
+      "#FF6B6B", // Red
+      "#4ECDC4", // Teal
+      "#45B7D1", // Blue
+      "#96CEB4", // Sage
+      "#FFEEAD", // Yellow
+      "#D4A5A5", // Pink
+      "#9B6B9B", // Purple
+      "#77DD77", // Green
+      "#FFB347", // Orange
+      "#B19CD9", // Lavender
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
 
   const scrollToElement = (id: string) => {
@@ -158,11 +167,16 @@ const EditMode: React.FC<EditModeProps> = ({ quizData, onSave, onCancel }) => {
       color: generateRandomColor(),
       questions: [],
     };
-    setEditedData({
-      ...editedData,
-      categories: [...editedData.categories, newCategory],
-    });
-    scrollToElement(`category-${newCategory.id}`);
+
+    setEditedData((prevData) => ({
+      ...prevData,
+      categories: [...prevData.categories, newCategory],
+    }));
+
+    // Ensure DOM is updated before scrolling
+    setTimeout(() => {
+      scrollToElement(`category-${newCategory.id}`);
+    }, 0);
   };
 
   const updateCategory = (categoryId: string, updates: Partial<Category>) => {
@@ -242,7 +256,7 @@ const EditMode: React.FC<EditModeProps> = ({ quizData, onSave, onCancel }) => {
       id: editedData.teams.length + 1,
       name: "New Team",
       points: 0,
-      color: "#000000",
+      color: generateRandomColor(),
     };
     setEditedData({
       ...editedData,

@@ -343,10 +343,15 @@ export default function QuizApp() {
         <div className="fixed bottom-0 left-0 right-0 bg-gray-800 p-4">
           <div className="flex justify-around items-center max-w-6xl mx-auto">
             {quizData.teams.map((team) => (
-              <div key={team.id} className="flex items-center space-x-4">
+              <div
+                key={team.id}
+                className="flex items-center space-x-4 rounded-lg p-3"
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+              >
                 <Trophy style={{ color: team.color }} />
 
                 <div
+                  className="flex flex-col cursor-pointer hover:opacity-80"
                   onClick={() => {
                     const newPoints = prompt(
                       `Enter new points for ${team.name}:`,
@@ -364,25 +369,27 @@ export default function QuizApp() {
                       }
                     }
                   }}
-                  className="cursor-pointer hover:opacity-80"
                 >
                   <div className="font-bold">{team.name}</div>
                   <div className="text-2xl">{team.points}</div>
                 </div>
+
                 {currentView === "question" && !isEditMode && (
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-3">
                     <Button
                       variant="ghost"
-                      className="text-green-500 hover:text-green-400"
+                      size="default"
+                      className="text-green-500 hover:text-green-400 p-1"
                       onClick={() =>
                         updateTeamPoints(team.id, currentQuestion?.points || 0)
                       }
                     >
-                      <Plus />
+                      <Plus size={16} />
                     </Button>
                     <Button
                       variant="ghost"
-                      className="text-red-500 hover:text-red-400"
+                      size="default"
+                      className="text-red-500 hover:text-red-400 p-1"
                       onClick={() =>
                         updateTeamPoints(
                           team.id,
@@ -391,7 +398,7 @@ export default function QuizApp() {
                         )
                       }
                     >
-                      <Minus />
+                      <Minus size={16} />
                     </Button>
                   </div>
                 )}
