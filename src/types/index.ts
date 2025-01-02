@@ -28,6 +28,7 @@ export interface Category {
 export interface QuizConfig {
   aspectRatio: string;
   defaultPointsDeduction: number;
+  title: string;
 }
 
 export interface QuizData {
