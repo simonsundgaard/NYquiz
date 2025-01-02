@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Pencil, Plus, Save, Trash2, X, Upload, Download } from "lucide-react";
+import { Plus, Save, Trash2, X, Upload, Download } from "lucide-react";
 import { Category, Question, Team, QuizData } from "@/types";
 import { strings } from "../config/strings";
 
@@ -36,6 +36,7 @@ const loadCategoriesAndQuestions = async (
         resolve(data);
       } catch (err) {
         reject(new Error("Invalid quiz file"));
+        console.error(err);
       }
     };
     reader.onerror = () => reject(new Error("Error reading file"));
@@ -69,6 +70,7 @@ const loadTeamState = async (file: File): Promise<{ teams: Team[] }> => {
         }
       } catch (err) {
         reject(new Error("Invalid team file"));
+        console.error(err);
       }
     };
     reader.onerror = () => reject(new Error("Error reading file"));
@@ -117,6 +119,7 @@ const handleCategoryImport = async (
     }
   } catch (err) {
     alert("Error loading quiz file");
+    console.error(err);
   }
 };
 
@@ -379,6 +382,7 @@ const EditMode: React.FC<EditModeProps> = ({ quizData, onSave, onCancel }) => {
                         });
                       } catch (err) {
                         alert("Error loading team file");
+                        console.error(err);
                       }
                     }
                   }}

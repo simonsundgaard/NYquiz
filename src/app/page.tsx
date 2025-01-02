@@ -14,7 +14,7 @@ import {
   Pencil,
 } from "lucide-react";
 import { quizData as initialQuizData } from "../data/quiz";
-import { Category, Question, Team, QuizData } from "../types";
+import { Question, QuizData } from "../types";
 import { strings } from "../config/strings";
 import EditMode from "@/components/EditMode";
 
