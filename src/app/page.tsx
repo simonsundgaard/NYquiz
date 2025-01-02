@@ -11,12 +11,7 @@ import {
   ArrowLeft,
   Eye,
   RotateCcw,
-  PlayCircle,
   Pencil,
-  Upload,
-  Download,
-  Save,
-  X,
 } from "lucide-react";
 import { quizData as initialQuizData } from "../data/quiz";
 import { Category, Question, Team, QuizData } from "../types";
